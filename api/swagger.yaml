@@ -1,0 +1,39 @@
+---
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: "Illegal Penny Auctions"
+paths:
+  /auctions:
+    get:
+      description: "Gets `Auction` objects.\nOptional query param of **size** determines\n\
+        size of returned array\n"
+      operationId: "auctionsGET"
+      parameters:
+      - name: "size"
+        in: "query"
+        description: "Size of array"
+        required: false
+        type: "number"
+        format: "double"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "array"
+            title: "ArrayOfAuctions"
+            items:
+              $ref: "#/definitions/Auction"
+      x-swagger-router-controller: "Auctions"
+
+definitions:
+  Auction:
+    properties:
+      id:
+        type: "string"
+      title:
+        type: "string"
+      bidder:
+        type: "string"
+      currentPrice:
+        type: "string"
