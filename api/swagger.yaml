@@ -37,4 +37,5 @@ definitions:
       bidder:
         type: "string"
       currentPrice:
-        type: "string"
+        type: "number"
+        format: "double"
