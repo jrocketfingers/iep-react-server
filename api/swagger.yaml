@@ -6,6 +6,7 @@ info:
 paths:
   /auctions:
     get:
+      tags: [ "auction" ]
       description: "Gets `Auction` objects.\nOptional query param of **size** determines\n\
         size of returned array\n"
       operationId: "auctionsGET"
