@@ -6,7 +6,6 @@ var swaggerTools = require('swagger-tools');
 var jsyaml = require('js-yaml');
 var fs = require('fs');
 var serverPort = 8080;
-var MongoClient = require('mongodb').MongoClient;
 var mongoPort = 27017;
 var dbName = "auctions";
 var db = require('./db');
@@ -39,7 +38,8 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   MongoClient.connect("mongodb://db:" + mongoPort + "/" + dbName, function(err, conn) {
     if(err) throw err;
 
-    db = conn;
+  db.connect("mongodb://db:" + mongoPort + "/" + dbName, function(err, conn) {
+    if(err) throw err;
 
     // Start the server
     http.createServer(app).listen(serverPort, function () {
