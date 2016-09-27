@@ -35,8 +35,11 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   // Serve the Swagger documents and Swagger UI
   app.use(middleware.swaggerUi());
 
-  MongoClient.connect("mongodb://db:" + mongoPort + "/" + dbName, function(err, conn) {
-    if(err) throw err;
+  app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
   db.connect("mongodb://db:" + mongoPort + "/" + dbName, function(err, conn) {
     if(err) throw err;
